@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臺南教育節「教育科技週」研習系列</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .date-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .card-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            line-height: 1.4;
+            margin-top: 10px;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .info-content {
+            flex: 1;
+        }
+        
+        .info-label {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 3px;
+        }
+        
+        .info-text {
+            font-size: 1em;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .register-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 15px;
+        }
+        
+        .register-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: background 0.3s;
+        }
+        
+        .footer-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 臺南教育節「教育科技週」系列研習</h1>
+        <p>✨ 14場精彩課程，提升您的教學科技力 ✨</p>
+    </div>
+    
+    <div class="container" id="cardsContainer"></div>
+    
+    <div class="footer">
+        <h3>📢 更多資訊</h3>
+        <div class="footer-links">
+            <a href="https://www.facebook.com/groups/549836615062875" class="footer-link" target="_blank">
+                👥 FB 社團：臺南市教育噗浪客
+            </a>
+            <a href="https://sites.google.com/sules.tn.edu.tw/tainan21" class="footer-link" target="_blank">
+                🌐 活動網站
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const courses = [
+            {
+                date: "10/15（三）19:00～21:00",
+                title: "補充創意 × 擴充應用：17玩 Canva 應用程式",
+                teacher: "蘇素雲 老師",
+                code: "311173"
+            },
+            {
+                date: "10/17（五）19:00～21:00",
+                title: "讓情緒變成幫手（SEL 社會情緒學習）",
+                teacher: "廣臻科技 蔡政倫",
+                code: "3111734"
+            },
+            {
+                date: "10/22（三）19:00～21:00",
+                title: "短影音時代的公民新聞",
+                teacher: "王建雄 老師（公民新聞平台召集人）",
+                code: "3111735"
+            },
+            {
+                date: "10/29（三）19:00～21:00",
+                title: "第一次使用 Gemini 就上手：基礎操作到日常應用",
+                teacher: "胡仕人 博士（新榮中學）",
+                code: "311176"
+            },
+            {
+                date: "10/31（五）19:00～21:00",
+                title: "科技在特殊教育的應用",
+                teacher: "李秉軒 老師",
+                code: "311177"
+            },
+            {
+                date: "11/05（三）19:00～21:00",
+                title: "Nano Banana 讓人物公仔動起來",
+                teacher: "呂聰賢 老師",
+                code: "311178"
+            },
+            {
+                date: "11/07（五）19:00～21:00",
+                title: "如何做媒體素養的遊戲",
+                teacher: "張君聖 老師（嘉義市嘉北國小）",
+                code: "311179"
+            },
+            {
+                date: "11/08（六）19:00～21:00",
+                title: "讓情緒變成幫手（SEL 社會情緒學習）",
+                teacher: "廣臻科技 蔡政倫",
+                code: "311180"
+            },
+            {
+                date: "11/12（三）19:00～21:00",
+                title: "AI 數位素養與媒體識讀",
+                teacher: "蘇彥寧 老師（臺南市勝利國小）",
+                code: "311181"
+            },
+            {
+                date: "11/14（五）19:00～21:00",
+                title: "NotebookLM AI 匯流神器升級再擴充！",
+                teacher: "黃信溢（沃克資訊有限公司）",
+                code: "311182"
+            },
+            {
+                date: "11/19（三）19:00～21:00",
+                title: "CapCut AI 影片語音辨識文字和剪輯技巧！",
+                teacher: "呂聰賢 老師",
+                code: "311183"
+            },
+            {
+                date: "11/21（五）19:00～21:00",
+                title: "超容易!! 數位教材自己做!!",
+                teacher: "張哲剛 老師（雲林縣成功國小）",
+                code: "311184"
+            },
+            {
+                date: "11/26（三）19:00～21:00",
+                title: "AI 教學新時代：Gemini 實戰應用（教學實踐 × 專業成長 × 行政效能）",
+                teacher: "胡仕人 博士（新榮中學）",
+                code: "311185"
+            },
+            {
+                date: "11/28（五）19:00～21:00",
+                title: "當 SEL 遇上數位時代",
+                teacher: "邱士芬（臺南市東區復興國小）",
+                code: "311172"
+            }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+        const registerUrl = "https://forms.gle/MamBattqqbCDox4L8";
+
+        courses.forEach(course => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="date-badge">📅 ${course.date}</div>
+                    <div class="card-title">${course.title}</div>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <div class="icon">👨‍🏫</div>
+                        <div class="info-content">
+                            <div class="info-label">講師</div>
+                            <div class="info-text">${course.teacher}</div>
+                        </div>
+                    </div>
+
+                    <button class="register-btn" onclick="window.open('${registerUrl}', '_blank')">
+                        ✅ 立即報名
+                    </button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>
